@@ -1,0 +1,58 @@
+{% extends "projectxapp/base.html" %}
+{% block titulo %}
+    CREAR TAREA
+{% endblock %}
+{% block contenido %}
+<div class="row">
+
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Datos de la tarea</h5>
+        </div>
+        <div class="card-body">
+
+          <form method="post"> {% csrf_token %}
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Titulo</label>
+                  <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Titulo de la tarea" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripción de la tarea" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Desarrolladores</label>
+                      <br>
+                      <select  name="developers" id="developers" multiple="multiple" style="display: block; margin: 0 auto; width:100%;">
+                        {% for user in users %}
+                            <option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                  </div>
+                </div>
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button name="creartarea" type="submit" class="btn btn-primary btn-round">Crear tarea</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
